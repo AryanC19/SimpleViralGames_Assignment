@@ -43,6 +43,8 @@ This repository contains the **SimpleViralGames Assignment App**, built using **
   <img src="https://i.postimg.cc/HxVvbfds/1.png" width="150">
   <img src="https://i.postimg.cc/1zWYn9xj/2.png" width="150">
   <img src="https://i.postimg.cc/xChx5t1G/3.png" width="150">
+  <img src="https://i.postimg.cc/j5cNdjGD/Demo.gif" width="150">
+  
 </p>
 
 ---
