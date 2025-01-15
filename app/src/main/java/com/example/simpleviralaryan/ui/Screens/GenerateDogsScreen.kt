@@ -135,11 +135,8 @@ fun GenerateDogsScreen(
                             )
                         }
                         else -> {
-                            Text(
-                                text = "Press Generate to see a dog!",
-                                color = Color.Gray,
-                                modifier = Modifier.align(Alignment.Center)
-                            )
+
+
                         }
                     }
                 }
