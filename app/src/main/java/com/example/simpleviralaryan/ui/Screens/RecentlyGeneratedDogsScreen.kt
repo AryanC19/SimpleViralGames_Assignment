@@ -3,7 +3,8 @@ package com.example.simpleviralaryan.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -18,7 +19,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @Composable
 fun RecentlyGeneratedDogsScreen(
     onNavigateBack: () -> Unit,
-    viewModel: RecentlyGeneratedDogsViewModel
+    viewModel: RecentlyGeneratedDogsViewModel = viewModel()
 ) {
     // Define the button color
     val buttonColor = Color(66, 134, 244)
@@ -30,16 +31,42 @@ fun RecentlyGeneratedDogsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Back Button
         Button(
             onClick = onNavigateBack,
             colors = androidx.compose.material3.ButtonDefaults.buttonColors(containerColor = buttonColor),
-            modifier = Modifier
-                .align(Alignment.Start)
+            modifier = Modifier.align(Alignment.Start)
         ) {
             Text(text = "Back", color = Color.White)
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Scrollable Gallery of Images in a Horizontal Row
+        if (recentDogImages.isNotEmpty()) {
+            LazyRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(250.dp), // Adjust height as needed
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                contentPadding = PaddingValues(horizontal = 0.dp)
+            ) {
+                items(recentDogImages) { dogImage ->
+                    Image(
+                        painter = rememberAsyncImagePainter(dogImage.imageUrl),
+                        contentDescription = "Dog Image",
+                        modifier = Modifier
+                            .width(200.dp) // Adjust width as needed
+                            .height(250.dp) // Match the LazyRow height
+                    )
+                }
+            }
+        } else {
+            Text(text = "No images to display.", color = Color.Gray)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -55,31 +82,6 @@ fun RecentlyGeneratedDogsScreen(
                 .padding(vertical = 8.dp)
         ) {
             Text(text = "Clear Dogs", color = Color.White)
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Scrollable Gallery of Images
-        if (recentDogImages.isEmpty()) {
-            Text(text = "No images to display.", color = Color.Gray)
-        } else {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(4.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                items(recentDogImages) { dogImage ->
-                    Image(
-                        painter = rememberAsyncImagePainter(dogImage.imageUrl),
-                        contentDescription = "Dog Image",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .aspectRatio(1f)
-                    )
-                }
-            }
         }
     }
 }
