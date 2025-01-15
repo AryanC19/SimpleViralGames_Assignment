@@ -46,13 +46,12 @@ fun GenerateDogsScreen(
         containerColor = Color.White, // Set the background color of the Scaffold
         topBar = {
             TopAppBar(
-
                 title = {
                     Text(
                         text = "Generate Dogs!",
                         fontWeight = FontWeight.Bold,
                         color = Color.Black,
-                        fontSize = 18.sp
+                        fontSize = 18.sp ,
                     )
                 },
                 navigationIcon = {
@@ -87,7 +86,7 @@ fun GenerateDogsScreen(
                     width = 1.dp,
                     color = Color.Black,
                     shape = RoundedCornerShape(0.dp)
-                ),
+                ).height(76.dp),
             )
         },
 

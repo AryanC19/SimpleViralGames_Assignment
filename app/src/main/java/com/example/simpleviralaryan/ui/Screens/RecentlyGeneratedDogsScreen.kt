@@ -58,7 +58,7 @@ fun RecentlyGeneratedDogsScreen(
                         modifier = Modifier
                             .clickable(onClick = onNavigateBack,
                                 indication = null,  // Removes the ripple effect
-                                interactionSource = remember { MutableInteractionSource() },)
+                                interactionSource = remember { MutableInteractionSource() })
                             .padding(horizontal = 8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -88,7 +88,7 @@ fun RecentlyGeneratedDogsScreen(
                     color = Color.Black,
                     shape = RoundedCornerShape(0.dp)
 
-                ).height(66.dp),
+                ).height(76.dp),
             )
         }
     ) { paddingValues ->
@@ -96,7 +96,7 @@ fun RecentlyGeneratedDogsScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
+                .padding(top = 40.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -106,7 +106,7 @@ fun RecentlyGeneratedDogsScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(350.dp),
-                    horizontalArrangement = Arrangement.spacedBy(15.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
                     contentPadding = PaddingValues(horizontal = 0.dp)
                 ) {
                     items(recentDogImages) { dogImage ->
