@@ -32,6 +32,8 @@ fun NavGraph() {
                 animationSpec = tween(400)
             )
         },
+
+
         popEnterTransition = {
             slideIntoContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Right,

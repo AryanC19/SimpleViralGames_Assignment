@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.simpleviralaryan.viewmodel.GenerateDogsViewModel
-
 @OptIn(ExperimentalMaterial3Api::class) // Marking experimental API usage
 @Composable
 fun GenerateDogsScreen(
@@ -40,40 +39,48 @@ fun GenerateDogsScreen(
     // Get screen height for image size
     val configuration = LocalConfiguration.current
     val screenHeight = configuration.screenHeightDp.dp
-    val imageHeight = screenHeight / 2
 
     Scaffold(
         containerColor = Color.White, // Set the background color of the Scaffold
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "Generate Dogs!",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black,
-                        fontSize = 18.sp ,
-                    )
-                },
-                navigationIcon = {
                     Row(
-                        modifier = Modifier
-                            .clickable(onClick = onNavigateBack,indication = null,  // Removes the ripple effect
-                                interactionSource = remember { MutableInteractionSource() },)
-                            .padding(horizontal = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
                     ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = null,
-                            tint = Color(66, 134, 244)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
+                        Row(
+                            modifier = Modifier
+                                .clickable(
+                                    onClick = onNavigateBack,
+                                    indication = null,
+                                    interactionSource = remember { MutableInteractionSource() }
+                                )
+                                .offset(x = (-8).dp)
+                                .padding(start = 0.dp, end = 50.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = null,
+                                tint = Color(66, 134, 244),
+                                modifier = Modifier.size(24.dp) // Explicit size for the icon
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = "Back",
+                                color = Color(66, 134, 244),
+                                fontSize = 18.sp,
+                                        fontWeight = FontWeight.Bold,
+                            )
+                        }
                         Text(
-                            text = "Back",
-                            color = Color(66, 134, 244),
-                            fontSize = 16.sp
+                            text = "Generate Dogs!",
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            fontSize = 18.sp,
+                            modifier = Modifier.align(Alignment.CenterVertically)
                         )
-                        Spacer(modifier = Modifier.width(45.dp))
                     }
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
@@ -82,14 +89,15 @@ fun GenerateDogsScreen(
                     titleContentColor = Color.Black,
                     scrolledContainerColor = Color.White
                 ),
-                modifier = Modifier.border(
-                    width = 1.dp,
-                    color = Color.Black,
-                    shape = RoundedCornerShape(0.dp)
-                ).height(76.dp),
+                modifier = Modifier
+                    .border(
+                        width = 1.dp,
+                        color = Color.Black,
+                        shape = RoundedCornerShape(0.dp)
+                    )
+                    .height(76.dp),
             )
         },
-
         content = { paddingValues ->
             Column(
                 modifier = Modifier
@@ -160,5 +168,4 @@ fun GenerateDogsScreen(
             }
         }
     )
-
 }
